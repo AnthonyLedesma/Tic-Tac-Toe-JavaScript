@@ -6,41 +6,45 @@
     <link rel="stylesheet" href="css/uikit.min.css" />
     <script src="js/uikit.min.js"></script>
     <script src="js/uikit-icons.min.js"></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.3.1.js"
+			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			  crossorigin="anonymous"></script>
     <title>Tic Tac Toe</title>
   </head>
   <body>
 
         <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
-                <div>
+                <div>  <!--   Start of the Player One Card -->
                     <div class="uk-card uk-card-hover uk-card-body">
                         <h3 class="uk-card-title">Player One</h3>
                         <form class="uk-form-stacked">
                             <div class="uk-margin">
-                                <label class="uk-form-label" for="form-stacked-text">Player One's Name</label>
+                                <label class="uk-form-label" for="name1">Player One's Name</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-stacked-text" type="text" placeholder="Player One's Name Here..."  id="name1">
+                                    <input class="uk-input" id="name1" type="text" placeholder="Player One's Name Here...">
                                     <b><p>Select Player Marker</p></b>
                                     <label><input class="uk-radio" type="radio" name="p1marker" id="p1x"> X </label>
                                     <label><input class="uk-radio" type="radio" name="p1marker" id="p1o"> O </label><br  />
-                                    <button class="uk-button uk-button-default uk-align-left" id="p1save">Save</button>
+                                    <input type="button" class="uk-button uk-button-default uk-align-left" id="p1save" value="Save" >
                                 </div>
                             </div>
                         </form>
                     </div>
                     
                 </div>
-                <div>
+                <div> <!-- Start Of Player Two Card -->
                     <div class="uk-card uk-card-hover uk-card-body">
                         <h3 class="uk-card-title">Player Two</h3>
                         <form class="uk-form-stacked">
                             <div class="uk-margin">
-                                <label class="uk-form-label" for="form-stacked-text">Player Two's Name</label>
+                                <label class="uk-form-label" for="name2">Player Two's Name</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-stacked-text" type="text" placeholder="Player Two's Name Here..."  id="name2">
+                                    <input class="uk-input" id="name2" type="text" placeholder="Player Two's Name Here..."  id="name2">
                                     <b><p>Select Player Marker</p></b>
                                     <label><input class="uk-radio" type="radio" name="p2marker" id="p2x"> X </label>
                                     <label><input class="uk-radio" type="radio" name="p2marker" id="p2o"> O </label><br  />
-                                    <button class="uk-button uk-button-default uk-align-left" id="p2save">Save</button>
+                                    <input type="button" class="uk-button uk-button-default uk-align-left" id="p2save" value="Save">
                                 </div>
                             </div>
                         </form>
@@ -48,5 +52,49 @@
                 </div>
         </div>
 
+        <!-- Start of Tic Tac Toe Board -->
+
+        <div class="uk-card uk-card-body" id="gameboard">
+                <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center" uk-grid>
+                    <div>
+                        <div class="uk-background-muted uk-padding tttspot" id="spot0">Item</div>
+                    </div>
+                    <div>
+                        <div class="uk-background-primary uk-padding uk-light tttspot" id="spot1">Item</div>
+                    </div>
+                    <div>
+                        <div class="uk-background-muted uk-padding tttspot" id="spot2">Item</div>
+                    </div>
+                  
+                </div>
+                <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center" uk-grid>
+                    <div>
+                        <div class="uk-background-muted uk-padding tttspot" id="spot3">Item</div>
+                    </div>
+                    <div>
+                        <div class="uk-background-primary uk-padding uk-light tttspot" id="spot4">Item</div>
+                    </div>
+                    <div>
+                        <div class="uk-background-muted uk-padding tttspot" id="spot5">Item</div>
+                    </div>
+                  
+                </div>
+                <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center" uk-grid>
+                    <div>
+                        <div class="uk-background-muted uk-padding tttspot" id="spot6">Item</div>
+                    </div>
+                    <div>
+                        <div class="uk-background-primary uk-padding uk-light tttspot" id="spot7">Item</div>
+                    </div>
+                    <div>
+                        <div class="uk-background-muted uk-padding tttspot" id="spot8">Item</div>
+                    </div>
+                  
+                </div>
+                </div>
+
+
+        <script src="./ttt.js"></script>
+        <script 
   </body>
 </html>

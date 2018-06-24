@@ -11,6 +11,8 @@
 
     const p1save = document.getElementById('p1save');
     const p2save = document.getElementById('p2save');
+    
+    const gameBoard = $('#gameboard');
 
     let p1Obj = {};
     let p2Obj = {};
@@ -72,16 +74,24 @@
 
     (InstallEventListeners = (p1save, p2save, p1x, p1o, p2x, p2o) => {
         p1save.addEventListener('click', function() {
-            if (Form1Checker() === true) {
-                console.log("Site 1 Check Pass");
+            if (Form1Checker() === true && Form2Checker() === true) {
+                p1Obj = GeneratePlayer1(p1name.value, P1Symbol());
+                p2Obj = GeneratePlayer2(p2name.value, P2Symbol());
+                gameBoard.show();
+            }
+            else if (Form1Checker() === true) {
                 p1Obj = GeneratePlayer1(p1name.value, P1Symbol());
             } else {
                 throw "Please Finish Player 1";
             }
         });
         p2save.addEventListener('click', function() {
-            if (Form2Checker() === true) {
-                console.log("Site 2 Check Pass");
+            if (Form1Checker() === true && Form2Checker() === true) {
+                p1Obj = GeneratePlayer1(p1name.value, P1Symbol());
+                p2Obj = GeneratePlayer2(p2name.value, P2Symbol());
+                gameBoard.show();
+            }
+            else if (Form2Checker() === true) {
                 p2Obj = GeneratePlayer2(p2name.value, P2Symbol());
             } else {
                 throw "Please Finish Player 2";
@@ -141,23 +151,15 @@
         }
 
         history.forEach(function(element,index,arr) {
+            let emptyDiv = document.createElement('div');
             let list = document.createElement('input');
             list.setAttribute('type', 'button');
-            list.setAttribute('value', `Turn: ${index}, Player: ${element.name}, Marker: ${element.symbol}, Spot: ${element.id}`);
-            historyDiv.appendChild(list);
+            list.setAttribute('value', `Turn: ${index}, ${element.name} put "${element.symbol}" at ${element.id}`);
+            list.setAttribute('class', 'uk-button uk-button-secondary uk-button-small');
+            emptyDiv.appendChild(list);
+            historyDiv.appendChild(emptyDiv);
             
         });
-        
-    };
-
-    
-    
-
-    HistoryTracker = (id, name, symbol) => {
-        history.push({id, name, symbol});
-
-        //
-
         
     };
 

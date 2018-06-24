@@ -16,6 +16,7 @@
     let p2Obj = {};
     
     let history = [];
+    let historyDiv = document.getElementById('history');
 
     Form1Checker = () => {
         if (p1name.value == ''){return false;}
@@ -74,7 +75,6 @@
             if (Form1Checker() === true) {
                 console.log("Site 1 Check Pass");
                 p1Obj = GeneratePlayer1(p1name.value, P1Symbol());
-                Render(p1Obj, p2Obj);
             } else {
                 throw "Please Finish Player 1";
             }
@@ -83,7 +83,6 @@
             if (Form2Checker() === true) {
                 console.log("Site 2 Check Pass");
                 p2Obj = GeneratePlayer2(p2name.value, P2Symbol());
-                Render(p1Obj, p2Obj);
             } else {
                 throw "Please Finish Player 2";
             }
@@ -106,27 +105,61 @@
             p1o.checked = false;
         });
 
-    })(p1save, p2save, p1x, p1o, p2x, p2o);
-
-    Render = (p1Obj, p2Obj) => {
-        if (p1Obj.name === undefined){return}
-        if (p2Obj.name === undefined){return}
-            
-        $('.tttspot').on('click', function() {
+        $('.tttspot').one('click', function() {
             if (p1Obj.turn === true) {
                 this.innerText = p1Obj.symbol;
                 p1Obj.turn = false;
                 p2Obj.turn = true;
+                let turn = {
+                    id : this.id,
+                    name : p1Obj.name,
+                    symbol : p1Obj.symbol
+                }
+                history.push(turn);
             } else {
                 this.innerText = p2Obj.symbol;
                 p2Obj.turn = false;
                 p1Obj.turn = true;
+                let turn = {
+                    id : this.id,
+                    name : p2Obj.name,
+                    symbol : p2Obj.symbol
+                }
+                history.push(turn);
             }
+            Render(p1Obj, p2Obj);
         });
+
+    })(p1save, p2save, p1x, p1o, p2x, p2o, p1Obj, p2Obj);
+
+    Render = (p1Obj, p2Obj) => {
+        if (p1Obj.name === undefined){return}
+        if (p2Obj.name === undefined){return}
+        
+        while (historyDiv.firstChild) {
+            historyDiv.removeChild(historyDiv.firstChild);
+        }
+
+        history.forEach(function(element,index,arr) {
+            let list = document.createElement('input');
+            list.setAttribute('type', 'button');
+            list.setAttribute('value', `Turn: ${index}, Player: ${element.name}, Marker: ${element.symbol}, Spot: ${element.id}`);
+            historyDiv.appendChild(list);
+            
+        });
+        
     };
 
-    HistoryTracker = () => {
+    
+    
 
-    }
+    HistoryTracker = (id, name, symbol) => {
+        history.push({id, name, symbol});
+
+        //
+
+        
+    };
+
 })();
 
